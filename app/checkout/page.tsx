@@ -26,34 +26,34 @@ export default function CheckoutPage() {
   }
 
   if (orderPlaced) {
-    return (
-      <main className="min-h-screen bg-background">
-        <Navigation cartCount={0} onCartClick={() => {}} />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <div className="w-8 h-8 bg-accent rounded-full" />
-            </div>
-            <h1 className="text-4xl font-bold mb-4">Order Placed Successfully!</h1>
-            <p className="text-muted-foreground text-lg mb-8">
-              Thank you for your purchase. Your order has been confirmed and will be shipped soon.
-            </p>
-            <a
-              href="/"
-              className="inline-block bg-accent text-accent-foreground px-8 py-3 rounded-lg hover:bg-accent/90 transition font-semibold"
-            >
-              Continue Shopping
-            </a>
+  return (
+    <main className="min-h-screen bg-background">
+      <Navigation />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center">
+          <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-8 h-8 bg-accent rounded-full" />
           </div>
+          <h1 className="text-4xl font-bold mb-4">Order Placed Successfully!</h1>
+          <p className="text-muted-foreground text-lg mb-8">
+            Thank you for your purchase. Your order has been confirmed and will be shipped soon.
+          </p>
+          <a
+            href="/"
+            className="inline-block bg-accent text-accent-foreground px-8 py-3 rounded-lg hover:bg-accent/90 transition font-semibold"
+          >
+            Continue Shopping
+          </a>
         </div>
-        <Footer />
-      </main>
+      </div>
+      <Footer />
+    </main>
     )
   }
 
   return (
     <main className="min-h-screen bg-background">
-      <Navigation cartCount={items.length} onCartClick={() => {}} />
+      <Navigation />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-bold mb-12">Shopping Cart</h1>

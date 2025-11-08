@@ -28,7 +28,7 @@ export default function CheckoutPage() {
   if (orderPlaced) {
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
           <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -53,7 +53,7 @@ export default function CheckoutPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
+     
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-bold mb-12">Shopping Cart</h1>

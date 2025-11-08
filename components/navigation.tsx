@@ -3,13 +3,16 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ShoppingBag, Menu, X, Search } from "lucide-react"
-import { useCart } from "@/context/cart-context"
 import Cart from "./cart"
 
-export default function Navigation() {
+interface NavigationProps {
+  cartCount: number
+  onCartClick: () => void
+}
+
+export default function Navigation({ cartCount, onCartClick }: NavigationProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
-  const { items } = useCart()
 
   return (
     <>
@@ -37,13 +40,16 @@ export default function Navigation() {
               </button>
 
               <button
-                onClick={() => setCartOpen(true)}
+                onClick={() => {
+                  setCartOpen(true)
+                  onCartClick()
+                }}
                 className="relative p-2 hover:bg-secondary rounded-lg transition"
               >
                 <ShoppingBag className="w-5 h-5" />
-                {items.length > 0 && (
+                {cartCount > 0 && (
                   <span className="absolute top-0 right-0 bg-accent text-accent-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
-                    {items.length}
+                    {cartCount}
                   </span>
                 )}
               </button>

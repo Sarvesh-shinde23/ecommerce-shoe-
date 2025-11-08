@@ -65,8 +65,8 @@ const RELATED_PRODUCTS = [
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const product = PRODUCT_DETAILS[params.id] || PRODUCT_DETAILS["1"]
-  const [selectedSize, setSelectedSize] = useState(product.sizes[0])
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
+  const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0])
+  const [selectedColor, setSelectedColor] = useState<{ name: string; hex: string }>(product.colors[0])
   const [quantity, setQuantity] = useState(1)
   const [isWishlisted, setIsWishlisted] = useState(false)
   const [hoveredId, setHoveredId] = useState<number | null>(null)
@@ -77,7 +77,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
 
   return (
     <main className="min-h-screen bg-background">
-      <Navigation cartCount={0} onCartClick={() => {}} />
+      
 
       {/* Product Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -89,7 +89,6 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
 
           {/* Product Info */}
           <div className="flex flex-col justify-between">
-            {/* Header */}
             <div>
               <div className="flex items-start justify-between mb-4">
                 <div>
@@ -134,7 +133,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               <div className="mb-8">
                 <label className="block text-sm font-semibold mb-3">Color</label>
                 <div className="flex gap-3">
-                  {product.colors.map((color) => (
+                  {product.colors.map((color: { name: string; hex: string }) => (
                     <button
                       key={color.name}
                       onClick={() => setSelectedColor(color)}
@@ -153,7 +152,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
               <div className="mb-8">
                 <label className="block text-sm font-semibold mb-3">Size</label>
                 <div className="grid grid-cols-4 gap-2">
-                  {product.sizes.map((size) => (
+                  {product.sizes.map((size: string) => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
@@ -212,62 +211,10 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
         <div className="max-w-7xl mx-auto">
           <h2 className="text-2xl font-bold mb-8">Specifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {Object.entries(product.specs).map(([key, value]) => (
+            {Object.entries(product.specs as Record<string, string>).map(([key, value]) => (
               <div key={key} className="bg-card p-4 rounded-lg border border-border">
                 <p className="text-muted-foreground text-sm mb-2">{key}</p>
                 <p className="font-semibold">{value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="flex gap-4">
-              <Truck className="w-8 h-8 text-accent flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold mb-2">Free Shipping</h3>
-                <p className="text-muted-foreground text-sm">On orders over $100</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <RotateCcw className="w-8 h-8 text-accent flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold mb-2">Easy Returns</h3>
-                <p className="text-muted-foreground text-sm">30-day return policy</p>
-              </div>
-            </div>
-            <div className="flex gap-4">
-              <Shield className="w-8 h-8 text-accent flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold mb-2">Secure Checkout</h3>
-                <p className="text-muted-foreground text-sm">100% secure payment</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Related Products */}
-      <section className="bg-secondary/30 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8">Related Products</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {RELATED_PRODUCTS.map((relatedProduct) => (
-              <div
-                key={relatedProduct.id}
-                onMouseEnter={() => setHoveredId(relatedProduct.id)}
-                onMouseLeave={() => setHoveredId(null)}
-                className="group"
-              >
-                <ProductCard
-                  product={relatedProduct}
-                  isHovered={hoveredId === relatedProduct.id}
-                  onAddToCart={() => {}}
-                />
               </div>
             ))}
           </div>

@@ -24,7 +24,7 @@ const PRODUCT_DETAILS: Record<string, any> = {
       Drop: "10mm",
       Cushioning: "EVA Foam",
       Fit: "True to Size",
-    },
+    } as Record<string, string>,
     sizes: ["6", "7", "8", "9", "10", "11", "12", "13"],
     colors: [
       { name: "Black", hex: "#000000" },

@@ -24,7 +24,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation cartCount={0} onCartClick={function (): void {
+        throw new Error("Function not implemented.")
+      } } />
       <Hero />
       <FeaturedProducts onAddToCart={addToCart} />
       <Footer />
